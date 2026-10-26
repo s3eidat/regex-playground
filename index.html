@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Regex Playground — Free Online JavaScript Regex Tester | S3eidat Tools</title>
+<meta name="description" content="Test JavaScript regular expressions with live match highlighting, capture and named groups, replace preview with $1, a cheat sheet, and protection against runaway patterns. Free, private, nothing uploaded.">
+<meta property="og:title" content="Regex Playground — free, private JavaScript regex tester">
+<meta property="og:description" content="Live highlighting, groups, replace preview and a cheat sheet. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="regex-playground">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Regex Playground</h1>
+    <p>Test JavaScript regular expressions with live highlighting, capture groups and a replace preview. Patterns run in a sandboxed worker, so a runaway regex can't freeze the page.</p>
+  </section>
+
+  <section class="card stack">
+    <div class="row between">
+      <h2>Pattern</h2>
+      <div class="row">
+        <label class="sr" for="preset">Common patterns</label>
+        <select class="select rx-preset" id="preset">
+          <option value="">Common patterns…</option>
+        </select>
+        <button class="btn ghost small" id="clear">Clear</button>
+      </div>
+    </div>
+    <div class="rx-pattern">
+      <span class="rx-slash" aria-hidden="true">/</span>
+      <label class="sr" for="pattern">Regular expression</label>
+      <input class="rx-input" id="pattern" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="[A-Z]\w+">
+      <span class="rx-slash" aria-hidden="true">/</span>
+      <span class="rx-flagtext mono" id="flagText">g</span>
+    </div>
+    <div class="row between">
+      <div class="seg rx-flags" id="flags" role="group" aria-label="Flags">
+        <button aria-pressed="true" data-f="g" title="global: find all matches">g</button>
+        <button aria-pressed="false" data-f="i" title="ignore case">i</button>
+        <button aria-pressed="false" data-f="m" title="multiline: ^ and $ match at line breaks">m</button>
+        <button aria-pressed="false" data-f="s" title="dotAll: . matches newlines">s</button>
+        <button aria-pressed="false" data-f="u" title="unicode: \p{…} and full code points">u</button>
+        <button aria-pressed="false" data-f="y" title="sticky: match only at lastIndex">y</button>
+      </div>
+      <span class="chip" id="status">Type a pattern</span>
+    </div>
+  </section>
+
+  <div class="grid-2 rx-grid mt">
+    <section class="card stack">
+      <h2>Test text</h2>
+      <label class="sr" for="text">Test text</label>
+      <textarea class="textarea" id="text" dir="auto" spellcheck="false" placeholder="Paste the text to search in…"></textarea>
+      <div class="row between"><span class="faint">Matches highlighted</span><span class="faint" id="textInfo"></span></div>
+      <div class="out rx-hl" id="hl" dir="auto" aria-live="polite"></div>
+    </section>
+
+    <section class="stack">
+      <div class="card stack">
+        <div class="row between">
+          <h2>Matches <small id="count"></small></h2>
+          <button class="btn small" id="copyMatches"><svg class="i"><use href="#i-copy"/></svg>Copy</button>
+        </div>
+        <div class="rx-matches" id="matches"></div>
+      </div>
+      <div class="card stack">
+        <h2>Replace</h2>
+        <label class="field">Replacement (<code>$1</code>, <code>$&lt;name&gt;</code>, <code>$&amp;</code> work)
+          <input class="input mono" id="replace" spellcheck="false" autocomplete="off" placeholder="$1">
+        </label>
+        <pre class="out rx-rep" id="replaced"></pre>
+        <div class="row">
+          <button class="btn small" id="copyRep"><svg class="i"><use href="#i-copy"/></svg>Copy result</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <details class="card mt rx-cheat" id="cheat">
+    <summary><h2>Cheat sheet <small>click a token to insert it</small></h2></summary>
+    <div class="rx-cheat-grid mt" id="cheatGrid"></div>
+  </details>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
